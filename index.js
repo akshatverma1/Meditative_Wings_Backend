@@ -5,7 +5,10 @@ const moongoose = require("mongoose");
 const PORT = 3000;
 const cors = require('cors');
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+const bodyParser = require('body-parser');
 app.use(cors());
 
 
@@ -40,23 +43,9 @@ const meditative = moongoose.Schema({
     category: String
 })
 
-let video = moongoose.model("video", meditative);
 
-let video1 = new video({
-    videoTitle: "Exaple",
-    videoDesp: "Exaple",
-    thumbnailLink: "Exaple",
-    youtubeLink: "Exaple",
-    category: "Exaple"
-})
+let med1 = moongoose.model("med1",meditative);
 
-try {
-    video1.save().then((result) => {
-        console.log("Saved");
-    });
-} catch (err) {
-    console.log(err);
-}
 
 
 app.get("/allcategories", (req, res) => {
@@ -66,6 +55,21 @@ app.get("/allcategories", (req, res) => {
         res.json(r);
     }
     chat();
+})
+
+app.post("/medi1",(req,res)=>{
+    let {videoTitle,videoDesp,thumbnailLink,youtubeLink,category} = req.body;
+    console.log(videoTitle+" "+videoDesp+" "+thumbnailLink+" "+youtubeLink+" "+category);
+    let medi1 = new med1({
+        videoTitle: videoTitle,
+        videoDesp: videoDesp,
+        thumbnailLink: "Exaplem1",
+        youtubeLink: "Exaplem1",
+        category: "Exaplem1"
+    })
+    medi1.save();
+    
+    res.send("Done");
 })
 
 
