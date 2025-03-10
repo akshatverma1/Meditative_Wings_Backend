@@ -79,3 +79,68 @@ app.get("/meditativeKnowledge",(req,res)=>{
     }
     chat();
 })
+
+app.get("/meditativeThoughts",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Meditative Thoughts"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+
+app.get("/meditativeMovie",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Meditative Movie"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+
+app.get("/meditativeWritings",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Meditative Writings"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+app.get("/lifeUnderstanding",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Life Understanding"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+app.get("/meditativeShayari",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Meditative Shayari"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+app.get("/meditativeShayariMovie",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Meditative Shayari Movie"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+app.get("/meditativeShayariWritings",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Meditative Shayari Writings"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
