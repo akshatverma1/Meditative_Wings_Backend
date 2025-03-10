@@ -50,26 +50,32 @@ let med1 = moongoose.model("med1",meditative);
 
 app.get("/allcategories", (req, res) => {
     const chat = async () => {
-        let r = await video.find({});
+        let r = await med1.find({});
         console.log(r);
         res.json(r);
     }
     chat();
 })
 
-app.post("/medi1",(req,res)=>{
+app.post("/newRequest",(req,res)=>{
     let {videoTitle,videoDesp,thumbnailLink,youtubeLink,category} = req.body;
     console.log(videoTitle+" "+videoDesp+" "+thumbnailLink+" "+youtubeLink+" "+category);
     let medi1 = new med1({
         videoTitle: videoTitle,
         videoDesp: videoDesp,
-        thumbnailLink: "Exaplem1",
-        youtubeLink: "Exaplem1",
-        category: "Exaplem1"
+        thumbnailLink: thumbnailLink,
+        youtubeLink: youtubeLink,
+        category: category
     })
     medi1.save();
-    
-    res.send("Done");
+    res.redirect("http://localhost:5173/");
 })
 
-
+app.get("/meditativeKnowledge",(req,res)=>{
+    const chat = async () => {
+        let r = await med1.find({category: "Meditative Knowledge"});
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
