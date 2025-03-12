@@ -68,7 +68,7 @@ app.post("/newRequest",(req,res)=>{
         category: category
     })
     medi1.save();
-    res.redirect("http://localhost:5173/");
+    res.redirect("https://meditative-wings-fe-brown.vercel.app/");
 })
 
 app.get("/meditativeKnowledge",(req,res)=>{
