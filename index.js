@@ -144,3 +144,21 @@ app.get("/meditativeShayariWritings",(req,res)=>{
     }
     chat();
 })
+
+app.get("/search/:ids",(req,res)=>{
+    let  {ids } = req.params;
+    console.log(ids);
+
+    const searching = async ()=>{
+        try {
+            let r = await med1.find({_id:ids});
+        console.log(r);
+        res.json(r);
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+    searching();
+})
