@@ -57,17 +57,17 @@ app.get("/allcategories", (req, res) => {
     chat();
 })
 
-app.post("/newRequest",(req,res)=>{
-    let {videoTitle,videoDesp,thumbnailLink,youtubeLink,category} = req.body;
+app.post("/newRequest",async (req,res)=>{
+    let {videoTitle,videoDesp,thumbnailLink,youtubeLink,category} = await req.body;
     console.log(videoTitle+" "+videoDesp+" "+thumbnailLink+" "+youtubeLink+" "+category);
-    let medi1 = new med1({
+    let medi1 = await new med1({
         videoTitle: videoTitle,
         videoDesp: videoDesp,
         thumbnailLink: thumbnailLink,
         youtubeLink: youtubeLink,
         category: category
     })
-    medi1.save();
+    await medi1.save();
     res.redirect("https://meditative-wings-fe-brown.vercel.app/");
 })
 
