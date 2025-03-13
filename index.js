@@ -73,7 +73,7 @@ app.post("/newRequest",(req,res)=>{
 
 app.get("/meditativeKnowledge",(req,res)=>{
     const chat = async () => {
-        let r = await med1.find({category: "Meditative Knowledge"});
+        let r = await med1.find({category: "Meditative Knowledge"}).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
