@@ -43,9 +43,13 @@ const meditative = moongoose.Schema({
     category: String
 })
 
-
+const meditativeTwo = moongoose.Schema({
+    authorName: String,
+    tweetContent: String,
+    tweetTags: String
+})
 let med1 = moongoose.model("med1", meditative);
-
+let med2 = moongoose.model("med2", meditativeTwo);
 
 
 app.get("/allcategories", (req, res) => {
@@ -68,6 +72,18 @@ app.post("/newRequest", async (req, res) => {
         category: category
     })
     await medi1.save();
+    res.redirect("https://meditative-wings-fe-brown.vercel.app/");
+})
+
+app.post("/newTweetPost", async (req, res) => {
+    let { authorName, tweetContent, tweetTag } = req.body;
+    console.log(authorName+" "+tweetContent+" "+tweetTag);
+    let medi2 = await new med2({
+        authorName: authorName,
+        tweetContent: tweetContent,
+        tweetTags: tweetTag
+    })
+    await medi2.save();
     res.redirect("https://meditative-wings-fe-brown.vercel.app/");
 })
 
