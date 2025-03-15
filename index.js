@@ -44,7 +44,7 @@ const meditative = moongoose.Schema({
 })
 
 
-let med1 = moongoose.model("med1",meditative);
+let med1 = moongoose.model("med1", meditative);
 
 
 
@@ -57,9 +57,9 @@ app.get("/allcategories", (req, res) => {
     chat();
 })
 
-app.post("/newRequest",async (req,res)=>{
-    let {videoTitle,videoDesp,thumbnailLink,youtubeLink,category} = await req.body;
-    console.log(videoTitle+" "+videoDesp+" "+thumbnailLink+" "+youtubeLink+" "+category);
+app.post("/newRequest", async (req, res) => {
+    let { videoTitle, videoDesp, thumbnailLink, youtubeLink, category } = await req.body;
+    console.log(videoTitle + " " + videoDesp + " " + thumbnailLink + " " + youtubeLink + " " + category);
     let medi1 = await new med1({
         videoTitle: videoTitle,
         videoDesp: videoDesp,
@@ -71,28 +71,18 @@ app.post("/newRequest",async (req,res)=>{
     res.redirect("https://meditative-wings-fe-brown.vercel.app/");
 })
 
-app.get("/meditativeKnowledge",(req,res)=>{
+app.get("/meditativeKnowledge", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({category: "Meditative Knowledge"}).sort({ _id: -1 });
+        let r = await med1.find({ category: "Meditative Knowledge" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
     chat();
 })
 
-app.get("/meditativeThoughts",(req,res)=>{
+app.get("/meditativeThoughts", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({category: "Meditative Thoughts"});
-        console.log(r);
-        res.json(r);
-    }
-    chat();
-})
-
-
-app.get("/meditativeMovie",(req,res)=>{
-    const chat = async () => {
-        let r = await med1.find({category: "Meditative Movie"});
+        let r = await med1.find({ category: "Meditative Thoughts" });
         console.log(r);
         res.json(r);
     }
@@ -100,65 +90,83 @@ app.get("/meditativeMovie",(req,res)=>{
 })
 
 
-app.get("/meditativeWritings",(req,res)=>{
+app.get("/meditativeMovie", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({category: "Meditative Writings"});
+        let r = await med1.find({ category: "Meditative Movie" });
         console.log(r);
         res.json(r);
     }
     chat();
 })
 
-app.get("/lifeUnderstanding",(req,res)=>{
+
+app.get("/meditativeWritings", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({category: "Life Understanding"});
+        let r = await med1.find({ category: "Meditative Writings" });
         console.log(r);
         res.json(r);
     }
     chat();
 })
 
-app.get("/meditativeShayari",(req,res)=>{
+app.get("/lifeUnderstanding", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({category: "Meditative Shayari"});
+        let r = await med1.find({ category: "Life Understanding" });
         console.log(r);
         res.json(r);
     }
     chat();
 })
 
-app.get("/meditativeShayariMovie",(req,res)=>{
+app.get("/meditativeShayari", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({category: "Meditative Shayari Movie"});
+        let r = await med1.find({ category: "Meditative Shayari" });
         console.log(r);
         res.json(r);
     }
     chat();
 })
 
-app.get("/meditativeShayariWritings",(req,res)=>{
+app.get("/meditativeShayariMovie", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({category: "Meditative Shayari Writings"});
+        let r = await med1.find({ category: "Meditative Shayari Movie" });
         console.log(r);
         res.json(r);
     }
     chat();
 })
 
-app.get("/search/:ids",(req,res)=>{
-    let  {ids } = req.params;
+app.get("/meditativeShayariWritings", (req, res) => {
+    const chat = async () => {
+        let r = await med1.find({ category: "Meditative Shayari Writings" });
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+app.get("/meditativeWingsMedia", (req, res) => {
+    const chat = async () => {
+        let r = await med1.find({ category: "Meditative Wings Media" });
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
+app.get("/search/:ids", (req, res) => {
+    let { ids } = req.params;
     console.log(ids);
 
-    const searching = async ()=>{
+    const searching = async () => {
         try {
-            let r = await med1.find({_id:ids});
-        console.log(r);
-        res.json(r);
-            
+            let r = await med1.find({ _id: ids });
+            console.log(r);
+            res.json(r);
+
         } catch (error) {
             console.log(error)
         }
-        
     }
     searching();
 })
