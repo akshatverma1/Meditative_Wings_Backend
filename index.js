@@ -192,7 +192,7 @@ app.get("/search/:ids", (req, res) => {
 
 app.get("/tweetdata",async (req,res) =>{
     const chat = async () => {
-        let r = await med2.find().sort({ _id: -1 });
+        let r = await med2.find();
         console.log(r);
         res.json(r);
     }
