@@ -99,7 +99,7 @@ app.get("/meditativeKnowledge", (req, res) => {
 
 app.get("/meditativeThoughts", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Meditative Thoughts" });
+        let r = await med1.find({ category: "Meditative Thoughts" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -109,7 +109,7 @@ app.get("/meditativeThoughts", (req, res) => {
 
 app.get("/meditativeMovie", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Meditative Movie" });
+        let r = await med1.find({ category: "Meditative Movie" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -119,7 +119,7 @@ app.get("/meditativeMovie", (req, res) => {
 
 app.get("/meditativeWritings", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Meditative Writings" });
+        let r = await med1.find({ category: "Meditative Writings" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -128,7 +128,7 @@ app.get("/meditativeWritings", (req, res) => {
 
 app.get("/lifeUnderstanding", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Life Understanding" });
+        let r = await med1.find({ category: "Life Understanding" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -137,7 +137,7 @@ app.get("/lifeUnderstanding", (req, res) => {
 
 app.get("/meditativeShayari", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Meditative Shayari" });
+        let r = await med1.find({ category: "Meditative Shayari" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -146,7 +146,7 @@ app.get("/meditativeShayari", (req, res) => {
 
 app.get("/meditativeShayariMovie", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Meditative Shayari Movie" });
+        let r = await med1.find({ category: "Meditative Shayari Movie" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -155,7 +155,7 @@ app.get("/meditativeShayariMovie", (req, res) => {
 
 app.get("/meditativeShayariWritings", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Meditative Shayari Writings" });
+        let r = await med1.find({ category: "Meditative Shayari Writings" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -164,7 +164,7 @@ app.get("/meditativeShayariWritings", (req, res) => {
 
 app.get("/meditativeWingsMedia", (req, res) => {
     const chat = async () => {
-        let r = await med1.find({ category: "Meditative Wings Media" });
+        let r = await med1.find({ category: "Meditative Wings Media" }).sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
@@ -192,7 +192,7 @@ app.get("/search/:ids", (req, res) => {
 
 app.get("/tweetdata",async (req,res) =>{
     const chat = async () => {
-        let r = await med2.find();
+        let r = await med2.find().sort({ _id: -1 });
         console.log(r);
         res.json(r);
     }
