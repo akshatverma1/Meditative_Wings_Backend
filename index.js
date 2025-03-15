@@ -76,7 +76,7 @@ app.post("/newRequest", async (req, res) => {
 })
 
 app.post("/newTweetPost", async (req, res) => {
-    let { authorName, tweetContent, tweetTag } = req.body;
+    let { authorName, tweetContent, tweetTag } = await req.body;
     console.log(authorName+" "+tweetContent+" "+tweetTag);
     let medi2 = await new med2({
         authorName: authorName,
@@ -87,14 +87,6 @@ app.post("/newTweetPost", async (req, res) => {
     res.redirect("https://meditative-wings-fe-brown.vercel.app/");
 })
 
-app.get("/tweetData",async (req,res) =>{
-    const chat = async () => {
-        let r = await med2.find({}).sort({ _id: -1 });
-        console.log(r);
-        res.json(r);
-    }
-    chat();
-})
 
 app.get("/meditativeKnowledge", (req, res) => {
     const chat = async () => {
@@ -194,4 +186,15 @@ app.get("/search/:ids", (req, res) => {
         }
     }
     searching();
+})
+
+
+
+app.get("/tweetData",async (req,res) =>{
+    const chat = async () => {
+        let r = await med2.find().sort({ _id: -1 });
+        console.log(r);
+        res.json(r);
+    }
+    chat();
 })
