@@ -87,6 +87,15 @@ app.post("/newTweetPost", async (req, res) => {
     res.redirect("https://meditative-wings-fe-brown.vercel.app/");
 })
 
+app.get("/tweetData",async (req,res) =>{
+    const chat = async () => {
+        let r = await med2.find({}).sort({ _id: -1 });
+        console.log(r);
+        res.json(r);
+    }
+    chat();
+})
+
 app.get("/meditativeKnowledge", (req, res) => {
     const chat = async () => {
         let r = await med1.find({ category: "Meditative Knowledge" }).sort({ _id: -1 });
