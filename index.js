@@ -72,7 +72,7 @@ app.post("/newRequest", async (req, res) => {
         category: category
     })
     await medi1.save();
-    res.redirect("https://meditative-wings-fe-brown.vercel.app/");
+    res.redirect("https://www.meditativewings.com/");
 })
 
 app.post("/newTweetPost", async (req, res) => {
@@ -84,7 +84,7 @@ app.post("/newTweetPost", async (req, res) => {
         tweetTags: tweetTag
     })
     await medi2.save();
-    res.redirect("https://meditative-wings-fe-brown.vercel.app/");
+    res.redirect("https://www.meditativewings.com/");
 })
 
 
