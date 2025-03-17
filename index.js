@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 })
 
 async function connectDB() {
-    await moongoose.connect("mongodb+srv://meditativedatabase:pkjYRYQhf0YPyyfs@meditativecluster.h6fcg.mongodb.net/?retryWrites=true&w=majority&appName=Meditativecluster");
+    await moongoose.connect("mongodb+srv://sp200ppss200:3wGZZeLakGm2DOub@cluster0.hphxc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 }
 try {
     connectDB().then((result) => {
