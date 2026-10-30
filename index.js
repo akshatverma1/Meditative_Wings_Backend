@@ -52,6 +52,7 @@ const meditativeProduct = moongoose.Schema({
     productTitle: { type: String, required: true, trim: true },
     productDesp: { type: String, required: true },
     productImageLink: { type: String, required: true, trim: true },
+    productImages: [{ type: String, trim: true }],
     productPrice: { type: Number, min: 0 },
     productCode: { type: String, required: true, unique: true, trim: true, uppercase: true }
 })
@@ -97,12 +98,15 @@ app.post("/newTweetPost", async (req, res) => {
 })
 
 app.post("/newProduct", async (req, res) => {
-    let { productTitle, productDesp, productImageLink, productPrice, productCode } = req.body;
+    let { productTitle, productDesp, productImages, productPrice, productCode } = req.body;
+    // One image arrives as a string, several as an array
+    let images = [].concat(productImages || []).map((link) => String(link).trim()).filter(Boolean);
     try {
         let medi3 = new med3({
             productTitle: productTitle,
             productDesp: productDesp,
-            productImageLink: productImageLink,
+            productImageLink: images[0],
+            productImages: images,
             productPrice: productPrice,
             productCode: productCode
         })
