@@ -48,8 +48,16 @@ const meditativeTwo = moongoose.Schema({
     tweetContent: String,
     tweetTags: String
 })
+const meditativeProduct = moongoose.Schema({
+    productTitle: { type: String, required: true, trim: true },
+    productDesp: { type: String, required: true },
+    productImageLink: { type: String, required: true, trim: true },
+    productCode: { type: String, required: true, unique: true, trim: true, uppercase: true }
+})
+
 let med1 = moongoose.model("med1", meditative);
 let med2 = moongoose.model("med2", meditativeTwo);
+let med3 = moongoose.model("med3", meditativeProduct);
 
 
 app.get("/allcategories", (req, res) => {
@@ -85,6 +93,26 @@ app.post("/newTweetPost", async (req, res) => {
     })
     await medi2.save();
     res.redirect("https://www.meditativewings.com/");
+})
+
+app.post("/newProduct", async (req, res) => {
+    let { productTitle, productDesp, productImageLink, productCode } = req.body;
+    try {
+        let medi3 = new med3({
+            productTitle: productTitle,
+            productDesp: productDesp,
+            productImageLink: productImageLink,
+            productCode: productCode
+        })
+        await medi3.save();
+        res.redirect("https://www.meditativewings.com/shop");
+    } catch (error) {
+        console.log(error);
+        if (error.code === 11000) {
+            return res.status(409).send("This product code already exists. Go back and use a different code.");
+        }
+        res.status(400).send("Could not save the product. Please check all fields and try again.");
+    }
 })
 
 
@@ -197,4 +225,14 @@ app.get("/tweetdata",async (req,res) =>{
         res.json(r);
     }
     chat();
+})
+
+app.get("/shopProducts", async (req, res) => {
+    try {
+        let r = await med3.find().sort({ _id: -1 });
+        res.json(r);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "Could not fetch products." });
+    }
 })
